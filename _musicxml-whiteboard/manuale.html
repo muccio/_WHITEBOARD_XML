@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Manuale Utente - MusicXML Whiteboard Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #282c34;
+            color: #abb2bf;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: #3a404c;
+            border: 1px solid #444a58;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        h1, h2, h3 {
+            color: #61afef;
+            border-bottom: 1px solid #444a58;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 { font-size: 2.2em; text-align: center; border: none; margin-top: 0; }
+        h2 { font-size: 1.6em; color: #98c379; }
+        h3 { font-size: 1.3em; color: #e5c07b; border-bottom: none; }
+        
+        p { margin-bottom: 15px; }
+        
+        ul { list-style-type: none; padding: 0; }
+        li { 
+            margin-bottom: 12px; 
+            padding-left: 25px; 
+            position: relative; 
+        }
+        li::before {
+            content: "•";
+            color: #61afef;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        code {
+            background-color: #282c34;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Consolas", "Courier New", monospace;
+            color: #56b6c2;
+            font-size: 0.9em;
+        }
+        kbd {
+            display: inline-block;
+            background-color: #4b5260;
+            border: 1px solid #5c6370;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.85em;
+            box-shadow: 1px 1px 0 #282c34;
+            font-family: sans-serif;
+            color: #fff;
+        }
+        
+        .icon { font-size: 1.2em; display: inline-block; width: 30px; text-align: center; margin-right: 5px; }
+        .highlight { color: #e5c07b; font-weight: bold; }
+        
+        .note {
+            background-color: rgba(97, 175, 239, 0.1);
+            border-left: 4px solid #61afef;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MusicXML Whiteboard Pro</h1>
+        <p style="text-align: center; color: #abb2bf; font-style: italic;">Strumento di Composizione e Progettazione Formale per la Musica Contemporanea</p>
+
+        <div class="section">
+            <h2>1. Filosofia dello Strumento</h2>
+            <p>
+                Questo software non è un semplice editor di spartiti, ma un ambiente di lavoro (Canvas infinito) pensato per <strong>comporre la forma</strong>. Permette di delineare la macro-struttura e la micro-struttura di un brano contemporaneo combinando notazione tradizionale (MusicXML), notazione grafica, gesti sonori e riferimenti spettromorfologici.
+            </p>
+            <p>
+                Il flusso di lavoro è organizzato su una <strong>Timeline Temporale</strong> orizzontale e su parametri verticali personalizzabili, permettendo di gestire più livelli di densità compositiva simultaneamente.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>2. Gestione dell'Interfaccia</h2>
+            <p>L'interfaccia è modulare e progettata per massimizzare lo spazio creativo.</p>
+            <ul>
+                <li><strong>Pannelli Fluttuanti:</strong> Tutti i pannelli (Menu, Tracce, Testo, Assi) possono essere spostati trascinando la maniglia <code>⋮⋮</code>.</li>
+                <li><strong>Chiusura a Soffietto:</strong> Fai <strong>doppio click</strong> sulla maniglia <code>⋮⋮</code> di un pannello per ridurlo al solo titolo, liberando la visuale.</li>
+                <li><strong>Navigazione:</strong> Usa la rotellina del mouse (o due dita su trackpad) per scorrere. Tieni premuto <kbd>Ctrl</kbd> (o usa il pinch-to-zoom su touch) per zoomare avanti e indietro.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>3. Composizione Multi-Traccia</h2>
+            <p>La struttura del brano è organizzata in tracce orizzontali parallele.</p>
+            <ul>
+                <li><strong>Traccia Attiva:</strong> È l'unica traccia su cui puoi disegnare o modificare elementi. Selezionala dal menu a tendina nel pannello "Gestione Tracce".</li>
+                <li><strong>Tracce Inattive:</strong> Le altre tracce appaiono in "grigetto" (faded) e sono bloccate per prevenire modifiche accidentali mentre lavori su un altro livello sonoro.</li>
+                <li><strong>Spaziatura Verticale:</strong> Usa lo slider <em>"Dist. Tracce"</em> nel menu principale per avvicinare o allontanare visivamente le tracce, passando da una visione d'insieme a una di dettaglio.</li>
+                <li><strong>Asse Y Personalizzabile:</strong> Ogni traccia ha il suo Asse Y. Puoi decidere in quante sezioni dividerlo e dare un nome a ciascuna sezione (es. <em>Altezze, Dinamica, Densità, Spettro</em>) tramite il pulsante "Modifica Etichette".</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>4. Strumenti Grafici e Notazionali</h2>
+            <h3>Disegno Vettoriale</h3>
+            <ul>
+                <li><span class="icon">↖</span> <strong>Seleziona / Sposta:</strong> Clicca su un elemento per modificarlo (colore, spessore). Trascina per spostare. 
+                    <br><em>Modifica Forme:</em> Trascina i punti di controllo rossi su linee, rettangoli e cerchi per deformarli.</li>
+                <li><span class="icon">S</span> <strong>Curva di Bézier:</strong> Fondamentale per disegnare inviluppi e gesti fluidi. 
+                    <br><strong>Uso:</strong> 4 Click (Inizio &rarr; Controllo 1 &rarr; Controllo 2 &rarr; Fine). Una volta disegnata, usa lo strumento <em>Seleziona</em> per muovere i punti di controllo e raffinare la curva.</li>
+                <li><span class="icon">✎</span> <strong>Mano Libera / Linee / Forme:</strong> Per tracciare gesti rapidi, box di improvvisazione o aree strutturali.</li>
+                <li><span class="icon">🪣</span> <strong>Secchiello:</strong> Riempie forme chiuse per evidenziare blocchi o sezioni.</li>
+            </ul>
+
+            <h3>Notazione e Testo</h3>
+            <ul>
+                <li><span class="icon">T</span> <strong>Testo & Simboli:</strong> Scrivi annotazioni o inserisci simboli musicali standard (Dinamiche, Articolazioni, Pause) tramite il catalogo integrato (pulsante "♪ Simboli").</li>
+                <li><span class="icon">📂</span> <strong>Import MusicXML:</strong> Carica frammenti di partitura tradizionale. Le battute verranno isolate in box indipendenti che puoi posizionare liberamente sulla timeline temporale della traccia attiva.</li>
+                <li><span class="icon">🖼️</span> <strong>Immagini PNG:</strong> Importa spettrogrammi, forme d'onda o grafici esterni. Utile per la musica elettroacustica o mista. Puoi ridimensionarle trascinando l'angolo in basso a destra.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>5. Workflow a "Layer" (Stratificazione)</h2>
+            <p>Per composizioni complesse, puoi lavorare per stratificazioni successive (es. Bozza &rarr; Schema Armonico &rarr; Orchestrazione).</p>
+            <ul>
+                <li><strong>Carica Sfondo (+):</strong> Nel pannello "Layer Sfondo", puoi caricare altri file di progetto (<code>.json</code>).</li>
+                <li><strong>Sovrapposizione:</strong> Questi progetti appariranno in trasparenza sotto il tuo lavoro attuale.</li>
+                <li><strong>Posizionamento:</strong> Usa i controlli numerici (X, Y, Scala) nel pannello laterale per allineare perfettamente lo schizzo di sfondo alla tua griglia attuale.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>6. Strumenti di Precisione</h2>
+            <ul>
+                <li><span class="icon">🧲</span> <strong>Calamita (Snap):</strong> Ancora i disegni e le battute agli incroci della griglia per una precisione ritmica assoluta.</li>
+                <li><span class="icon">🪞</span> <strong>Specchio:</strong> Clona in tempo reale ciò che disegni ribaltandolo rispetto all'asse centrale della traccia. Ideale per forme simmetriche o contrappunti grafici.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>7. Scorciatoie da Tastiera</h2>
+            <ul>
+                <li><kbd>Ctrl</kbd> + <kbd>Z</kbd> : Annulla ultima azione.</li>
+                <li><kbd>Ctrl</kbd> + <kbd>Y</kbd> : Ripristina azione.</li>
+                <li><kbd>Ctrl</kbd> + <kbd>C</kbd> : Copia elemento selezionato (funziona anche tra tracce diverse).</li>
+                <li><kbd>Ctrl</kbd> + <kbd>V</kbd> : Incolla elemento nella posizione del mouse.</li>
+                <li><kbd>Alt</kbd> + <strong>Drag</strong> : Duplica rapidamente un elemento trascinandolo.</li>
+                <li><kbd>Canc</kbd> / <kbd>Backspace</kbd> : Elimina l'elemento selezionato.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>8. Esportazione</h2>
+            <ul>
+                <li><strong>Salva Progetto:</strong> Scarica un file <code>.json</code> contenente tutte le tracce, i disegni e le impostazioni.</li>
+                <li><strong>Esporta PDF:</strong> Genera un documento PDF pronto per la stampa. Il sistema calcola automaticamente l'area di ritaglio eliminando lo spazio vuoto sopra la prima traccia e includendo tutto il contenuto fino all'elemento più basso. Include gli assi e le legende.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

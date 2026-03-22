@@ -1,0 +1,66 @@
+{
+  "title": "Trio per Archi ed Elettronica",
+  "author": "Maestro Contemporaneo",
+  "totalSec": "150",
+  "gridSec": "1",
+  "zoom": 1,
+  "hideSmallTicks": false,
+  "activeTrackId": "track_1",
+  "snapGrid": false,
+  "mirrorDraw": false,
+  "legendData":[
+    { "shape": "color", "color": "#61afef", "text": "Dinamica: p / Suono limpido" },
+    { "shape": "color", "color": "#e06c75", "text": "Dinamica: f / Tensione / Glitch" },
+    { "shape": "color", "color": "#98c379", "text": "Pizzicato / Staccato ritmico" },
+    { "shape": "color", "color": "#e5c07b", "text": "Tappeto Sonoro / Sub Drone" },
+    { "shape": "color", "color": "#c678dd", "text": "Modulazione / Espressivo" },
+    { "shape": "freehand", "color": "#e06c75", "text": "Rumore / Noise aspro" },
+    { "shape": "line", "color": "#98c379", "text": "Pattern ritmico irregolare" }
+  ],
+  "tracks":[
+    {
+      "id": "track_1",
+      "name": "Violino",
+      "baseY": 1000,
+      "offsetY": 0,
+      "ySectionsCount": 4,
+      "yLabels":[
+        { "text": "Sul pont.", "squares": "3" },
+        { "text": "Normale", "squares": "3" },
+        { "text": "Sul tasto", "squares": "3" },
+        { "text": "Pizz.", "squares": "2" }
+      ],
+      "svgContent": "<path d=\"M 100 900 L 300 900 L 350 850 L 500 850\" stroke=\"#61afef\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"pointer-events: all;\"></path><circle cx=\"600\" cy=\"950\" r=\"15\" stroke=\"#e06c75\" stroke-width=\"3\" fill=\"rgba(224, 108, 117, 0.3)\" style=\"pointer-events: all;\"></circle><text x=\"100\" y=\"820\" fill=\"#abb2bf\" font-family=\"Sans Serif\" font-size=\"18\" style=\"pointer-events: all;\">Lento e misterioso 𝄐</text><path data-bezier=\"true\" data-p1x=\"800\" data-p1y=\"950\" data-c1x=\"900\" data-c1y=\"800\" data-c2x=\"1000\" data-c2y=\"1100\" data-p2x=\"1200\" data-p2y=\"850\" d=\"M 800,950 C 900,800 1000,1100 1200,850\" stroke=\"#98c379\" stroke-width=\"4\" fill=\"none\" style=\"pointer-events: all;\"></path><rect x=\"1300\" y=\"880\" width=\"200\" height=\"40\" stroke=\"#e5c07b\" stroke-width=\"2\" fill=\"rgba(229,192,123,0.5)\" style=\"pointer-events: all;\"></rect><path d=\"M 1600 800 L 1700 950 L 1800 800 L 1900 950 L 2000 800\" stroke=\"#c678dd\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"pointer-events: all;\"></path><text x=\"1600\" y=\"770\" fill=\"#c678dd\" font-family=\"Serif\" font-size=\"20\" style=\"pointer-events: all;\">Espressivo, vibrato</text>",
+      "htmlContent": "<div class=\"measure-box\" style=\"z-index: 101; width: 140px; height: 120px; left: 100px; top: 850px;\"><span class=\"measure-label\">M 1</span><svg viewBox=\"0 0 100 50\" preserveAspectRatio=\"xMidYMid meet\"><line x1=\"0\" y1=\"10\" x2=\"100\" y2=\"10\" stroke=\"#000\"/><line x1=\"0\" y1=\"20\" x2=\"100\" y2=\"20\" stroke=\"#000\"/><line x1=\"0\" y1=\"30\" x2=\"100\" y2=\"30\" stroke=\"#000\"/><line x1=\"0\" y1=\"40\" x2=\"100\" y2=\"40\" stroke=\"#000\"/><circle cx=\"30\" cy=\"25\" r=\"4\"/><line x1=\"34\" y1=\"25\" x2=\"34\" y2=\"5\" stroke=\"#000\"/></svg></div><div class=\"measure-box\" style=\"z-index: 102; width: 140px; height: 120px; left: 400px; top: 850px;\"><span class=\"measure-label\">M 2</span><svg viewBox=\"0 0 100 50\" preserveAspectRatio=\"xMidYMid meet\"><line x1=\"0\" y1=\"10\" x2=\"100\" y2=\"10\" stroke=\"#000\"/><line x1=\"0\" y1=\"20\" x2=\"100\" y2=\"20\" stroke=\"#000\"/><line x1=\"0\" y1=\"30\" x2=\"100\" y2=\"30\" stroke=\"#000\"/><line x1=\"0\" y1=\"40\" x2=\"100\" y2=\"40\" stroke=\"#000\"/><circle cx=\"50\" cy=\"15\" r=\"4\"/><line x1=\"54\" y1=\"15\" x2=\"54\" y2=\"35\" stroke=\"#000\"/></svg></div>"
+    },
+    {
+      "id": "track_2",
+      "name": "Viola",
+      "baseY": 2500,
+      "offsetY": 0,
+      "ySectionsCount": 3,
+      "yLabels":[
+        { "text": "Tremolo", "squares": "4" },
+        { "text": "Normale", "squares": "4" },
+        { "text": "Pizz.", "squares": "4" }
+      ],
+      "svgContent": "<rect x=\"150\" y=\"2380\" width=\"300\" height=\"40\" stroke=\"#e06c75\" stroke-width=\"2\" fill=\"rgba(224, 108, 117, 0.4)\" style=\"pointer-events: all;\"></rect><text x=\"150\" y=\"2360\" fill=\"#e06c75\" font-family=\"Monospace\" font-size=\"16\" style=\"pointer-events: all;\">Tremolo sul tasto</text><path d=\"M 600 2450 L 650 2400 L 700 2450 L 750 2400 L 800 2450 L 850 2400 L 900 2450\" stroke=\"#61afef\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"pointer-events: all;\"></path><path data-bezier=\"true\" data-p1x=\"1000\" data-p1y=\"2350\" data-c1x=\"1100\" data-c1y=\"2150\" data-c2x=\"1200\" data-c2y=\"2550\" data-p2x=\"1400\" data-p2y=\"2350\" d=\"M 1000,2350 C 1100,2150 1200,2550 1400,2350\" stroke=\"#d19a66\" stroke-width=\"5\" fill=\"none\" style=\"pointer-events: all;\"></path><circle cx=\"1700\" cy=\"2280\" r=\"30\" stroke=\"#98c379\" stroke-width=\"3\" fill=\"rgba(152,195,121,0.3)\" style=\"pointer-events: all;\"></circle><text x=\"1675\" y=\"2220\" fill=\"#98c379\" font-family=\"Sans Serif\" font-size=\"24\" font-weight=\"bold\" style=\"pointer-events: all;\">Pizz. 𝆕</text><line x1=\"1900\" y1=\"2400\" x2=\"2300\" y2=\"2250\" stroke=\"#56b6c2\" stroke-width=\"8\" stroke-dasharray=\"20 10\" style=\"pointer-events: all;\"></line>",
+      "htmlContent": "<div class=\"measure-box\" style=\"z-index: 103; width: 140px; height: 120px; left: 150px; top: 2420px;\"><span class=\"measure-label\">M 1</span><svg viewBox=\"0 0 100 50\" preserveAspectRatio=\"xMidYMid meet\"><line x1=\"0\" y1=\"10\" x2=\"100\" y2=\"10\" stroke=\"#000\"/><line x1=\"0\" y1=\"20\" x2=\"100\" y2=\"20\" stroke=\"#000\"/><line x1=\"0\" y1=\"30\" x2=\"100\" y2=\"30\" stroke=\"#000\"/><line x1=\"0\" y1=\"40\" x2=\"100\" y2=\"40\" stroke=\"#000\"/><circle cx=\"40\" cy=\"35\" r=\"4\"/><line x1=\"44\" y1=\"35\" x2=\"44\" y2=\"15\" stroke=\"#000\"/></svg></div>"
+    },
+    {
+      "id": "track_3",
+      "name": "Elettronica",
+      "baseY": 4000,
+      "offsetY": 0,
+      "ySectionsCount": 4,
+      "yLabels":[
+        { "text": "Hi-Freq", "squares": "3" },
+        { "text": "Mid-Freq", "squares": "3" },
+        { "text": "Low-Freq", "squares": "3" },
+        { "text": "Sub", "squares": "3" }
+      ],
+      "svgContent": "<rect x=\"20\" y=\"3880\" width=\"2800\" height=\"120\" stroke=\"none\" fill=\"rgba(229,192,123,0.15)\" style=\"pointer-events: all;\"></rect><text x=\"30\" y=\"3860\" fill=\"#e5c07b\" font-family=\"Monospace\" font-size=\"18\" style=\"pointer-events: all;\">Drone Sub (40Hz) Costante</text><path d=\"M 400 3800 L 420 3720 L 440 3850 L 460 3710 L 480 3880 L 500 3700 L 520 3820\" stroke=\"#e06c75\" stroke-width=\"3\" fill=\"none\" stroke-linejoin=\"miter\" style=\"pointer-events: all;\"></path><text x=\"380\" y=\"3680\" fill=\"#e06c75\" font-family=\"Sans Serif\" font-size=\"16\" font-weight=\"bold\" style=\"pointer-events: all;\">Glitch / Noise bursts ⚡</text><rect x=\"800\" y=\"3750\" width=\"500\" height=\"150\" stroke=\"#61afef\" stroke-width=\"2\" fill=\"rgba(97,175,239,0.2)\" style=\"pointer-events: all;\"></rect><path data-bezier=\"true\" data-p1x=\"800\" data-p1y=\"3850\" data-c1x=\"950\" data-c1y=\"3650\" data-c2x=\"1150\" data-c2y=\"3950\" data-p2x=\"1300\" data-p2y=\"3850\" d=\"M 800,3850 C 950,3650 1150,3950 1300,3850\" stroke=\"#c678dd\" stroke-width=\"6\" fill=\"none\" style=\"pointer-events: all;\"></path><text x=\"1000\" y=\"3820\" fill=\"#ffffff\" font-family=\"Sans Serif\" font-size=\"18\" style=\"pointer-events: all;\">Low-Pass Filter Sweep</text><line x1=\"1500\" y1=\"3780\" x2=\"2300\" y2=\"3780\" stroke=\"#98c379\" stroke-width=\"12\" stroke-dasharray=\"15 10\" style=\"pointer-events: all;\"></line><text x=\"1500\" y=\"3750\" fill=\"#98c379\" font-family=\"Monospace\" font-size=\"16\" style=\"pointer-events: all;\">LFO Gating Sync (1/8)</text>",
+      "htmlContent": ""
+    }
+  ]
+}

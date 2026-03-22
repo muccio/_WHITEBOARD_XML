@@ -1,0 +1,61 @@
+{
+  "title": "Comp X Clarinetto",
+  "author": "Ricostruzione Vettoriale",
+  "totalSec": "125",
+  "gridSec": "1",
+  "zoom": 1,
+  "hideSmallTicks": false,
+  "legendData":[
+    {
+      "shape": "color",
+      "color": "#4169E1",
+      "text": "Suono Ordinario / Aria"
+    },
+    {
+      "shape": "color",
+      "color": "#DC143C",
+      "text": "Suono Saturato / Multifonici"
+    },
+    {
+      "shape": "color",
+      "color": "#32CD32",
+      "text": "Instabilità di Pitch / Glissandi"
+    }
+  ],
+  "snapGrid": true,
+  "mirrorDraw": true,
+  "activeTrackId": "track_clar",
+  "tracks":[
+    {
+      "id": "track_clar",
+      "name": "Clarinetto Solo",
+      "baseY": 2500,
+      "offsetY": 0,
+      "ySectionsCount": 5,
+      "yLabels":[
+        {
+          "text": "Acutissimo",
+          "squares": "3"
+        },
+        {
+          "text": "Acuto",
+          "squares": "3"
+        },
+        {
+          "text": "Medio",
+          "squares": "3"
+        },
+        {
+          "text": "Grave",
+          "squares": "3"
+        },
+        {
+          "text": "Dinamica",
+          "squares": "4"
+        }
+      ],
+      "svgContent": "<path id=\"b1\" d=\"M 0 2500 L 100 2450 L 100 2400 L 160 2400 L 160 2350 L 200 2350 L 200 2300 L 240 2300 L 240 2500 Z\" fill=\"rgba(65,105,225,0.3)\" stroke=\"#4169E1\" stroke-width=\"2\" data-tx=\"0\" data-ty=\"0\" /><use href=\"#b1\" transform=\"translate(0, 5000) scale(1, -1)\" /><path id=\"r1\" d=\"M 240 2500 L 240 2150 L 340 2150 L 380 2450 L 380 2500 Z\" fill=\"rgba(220,20,60,0.3)\" stroke=\"#DC143C\" stroke-width=\"2\" data-tx=\"0\" data-ty=\"0\" /><use href=\"#r1\" transform=\"translate(0, 5000) scale(1, -1)\" /><path id=\"b2\" d=\"M 380 2500 L 380 2450 L 700 2480 L 1000 2450 L 1000 2500 Z\" fill=\"rgba(65,105,225,0.3)\" stroke=\"#4169E1\" stroke-width=\"2\" data-tx=\"0\" data-ty=\"0\" /><use href=\"#b2\" transform=\"translate(0, 5000) scale(1, -1)\" /><path id=\"b3\" d=\"M 1000 2500 L 1000 2450 L 1060 2450 L 1060 2380 L 1100 2380 L 1100 2500 Z\" fill=\"rgba(65,105,225,0.3)\" stroke=\"#4169E1\" stroke-width=\"2\" data-tx=\"0\" data-ty=\"0\" /><use href=\"#b3\" transform=\"translate(0, 5000) scale(1, -1)\" /><path id=\"r2\" d=\"M 1100 2500 L 1100 2300 L 1160 2300 L 1160 2500 Z\" fill=\"rgba(220,20,60,0.3)\" stroke=\"#DC143C\" stroke-width=\"2\" data-tx=\"0\" data-ty=\"0\" /><use href=\"#r2\" transform=\"translate(0, 5000) scale(1, -1)\" /><path id=\"b4\" d=\"M 1160 2500 L 1160 2380 L 1260 2380 L 1260 2450 L 1400 2450 L 1400 2500 Z\" fill=\"rgba(65,105,225,0.3)\" stroke=\"#4169E1\" stroke-width=\"2\" data-tx=\"0\" data-ty=\"0\" /><use href=\"#b4\" transform=\"translate(0, 5000) scale(1, -1)\" /><path id=\"r3\" d=\"M 1400 2500 L 1400 2200 L 1760 2200 L 1760 2500 Z\" fill=\"rgba(220,20,60,0.3)\" stroke=\"#DC143C\" stroke-width=\"2\" data-tx=\"0\" data-ty=\"0\" /><use href=\"#r3\" transform=\"translate(0, 5000) scale(1, -1)\" /><path id=\"g1\" d=\"M 1760 2500 L 1860 2250 L 1960 2450 L 1960 2500 Z\" fill=\"rgba(50,205,50,0.3)\" stroke=\"#32CD32\" stroke-width=\"2\" data-tx=\"0\" data-ty=\"0\" /><use href=\"#g1\" transform=\"translate(0, 5000) scale(1, -1)\" /><path id=\"b5\" d=\"M 1960 2500 L 1960 2450 L 2400 2500 Z\" fill=\"rgba(65,105,225,0.3)\" stroke=\"#4169E1\" stroke-width=\"2\" data-tx=\"0\" data-ty=\"0\" /><use href=\"#b5\" transform=\"translate(0, 5000) scale(1, -1)\" /><text x=\"380\" y=\"2050\" fill=\"#DC143C\" font-family=\"sans-serif\" font-size=\"34\" font-weight=\"bold\" dominant-baseline=\"middle\">COMP X CLARINETTO</text><text x=\"100\" y=\"2650\" fill=\"#abb2bf\" font-family=\"serif\" font-size=\"28\">p &lt; mf 𝅘𝅥 𝅘𝅥𝅮 𝅘𝅥𝅮 𝅘𝅥</text><text x=\"400\" y=\"2650\" fill=\"#abb2bf\" font-family=\"serif\" font-size=\"28\">p &lt; 𝄐 𝅗𝅥</text><text x=\"700\" y=\"2650\" fill=\"#abb2bf\" font-family=\"sans-serif\" font-size=\"20\">(soffio / fiato)</text><text x=\"1080\" y=\"2650\" fill=\"#abb2bf\" font-family=\"serif\" font-size=\"28\">sfz 𝅘𝅥𝅰 𝅘𝅥𝅰 𝅘𝅥𝅰 𝅘𝅥𝅰</text><text x=\"1450\" y=\"2650\" fill=\"#abb2bf\" font-family=\"sans-serif\" font-size=\"20\">(multifonico aspro / suoni di chiave)</text><text x=\"1800\" y=\"2650\" fill=\"#abb2bf\" font-family=\"serif\" font-size=\"28\">cresc. 𝅘𝅥𝅮 𝅘𝅥𝅮 fff</text><text x=\"2100\" y=\"2650\" fill=\"#abb2bf\" font-family=\"serif\" font-size=\"28\">dim. 𝅝 ppp</text>",
+      "htmlContent": ""
+    }
+  ]
+}

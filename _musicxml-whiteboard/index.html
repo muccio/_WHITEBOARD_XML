@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>MusicXML Whiteboard Pro - Multi-Track</title>
+    <meta name="theme-color" content="#282c34">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/opensheetmusicdisplay@1.6.1/build/opensheetmusicdisplay.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- PANNELLO DI CONTROLLO PRINCIPALE -->
+    <div class="controls-panel" id="controls">
+        <div class="drag-handle" title="Trascina pannello">⋮⋮</div>
+        <strong>Menu</strong> 
+        <div class="control-group">
+            <input type="text" id="proj-title" placeholder="Titolo Progetto" style="width:140px; font-weight:bold;">
+            <input type="text" id="proj-author" placeholder="Autore" style="width:100px;">
+            <a href="manuale.html" target="_blank" title="Apri il manuale utente" class="btn-help">?</a>
+        </div>
+        <div class="control-group">
+            <input type="file" id="file-input" accept=".xml,.musicxml,.mxl" style="max-width: 140px;"/>
+        </div>
+        <div class="control-group">
+            <button id="btn-undo" class="btn-custom" title="Annulla (Ctrl+Z)" disabled>↩️</button>
+            <button id="btn-redo" class="btn-custom" title="Ripristina (Ctrl+Y)" disabled>↪️</button>
+            <button id="save-project-btn" class="btn-custom btn-save">💾 Salva</button>
+            <button id="trigger-load-btn" class="btn-custom btn-load">📂 Carica</button>
+            <a href="audio-tool.html" target="_blank" title="Apri Audio Visualizer Tool" class="btn-custom" style="background:#4b5260; text-decoration:none;">🔊 Audio</a>
+            <input type="file" id="load-project-input" accept=".json" style="display:none;" />
+            <button id="export-pdf-btn" class="btn-custom" style="background:#633c41; border-color:#875158; color:#e06c75;">📄 PDF</button>
+            <button id="btn-legend-edit" class="btn-custom btn-legend">🏷️ Legenda Globale</button>
+        </div>
+        <div class="control-group">
+            <strong>Strum:</strong>
+            <select id="draw-tool">
+                <option value="select">↖ Seleziona / Sposta</option>
+                <option value="bezier">S Curva di Bézier</option>
+                <option value="freehand">✎ Mano libera</option>
+                <option value="line">/ Linea retta</option>
+                <option value="rect">☐ Rettangolo vuoto</option>
+                <option value="rectFill">■ Rettangolo pieno</option>
+                <option value="circle">◯ Cerchio vuoto</option>
+                <option value="fill">🪣 Secchiello</option>
+                <option value="text">T Testo</option>
+                <option value="image">🖼️ Immagine</option>
+                <option value="eraser">⌫ Gomma</option>
+            </select>
+            <input type="file" id="img-upload" accept="image/png" style="display:none;">
+            <div id="standard-controls" style="display:flex; align-items:center; gap:5px;">
+                <input type="color" id="draw-color" value="#61afef" title="Colore">
+                <input type="range" id="draw-opacity" min="0.1" max="1" step="0.1" value="1" style="width: 40px;" title="Trasparenza">
+                <input type="range" id="draw-size" min="1" max="20" value="4" style="width: 40px;" title="Spessore">
+            </div>
+            <button id="btn-delete-element" class="btn-clear" style="display:none;" title="Elimina">🗑️</button>
+            <label class="snap-label" title="Calamita"><input type="checkbox" id="snap-grid"> 🧲</label>
+            <label class="mirror-label" title="Specchio"><input type="checkbox" id="mirror-draw"> 🪞</label>
+            <button id="clear-canvas" class="btn-custom btn-clear">Svuota Lavagna</button>
+        </div>
+        <div class="control-group">
+            <strong>Zoom:</strong>
+            <button id="btn-zoom-out">-</button>
+            <span id="zoom-val" style="display:inline-block; width: 40px; text-align:center;">100%</span>
+            <button id="btn-zoom-in">+</button>
+        </div>
+        <div class="control-group">
+            <!-- NUOVO SLIDER SPAZIATURA VERTICALE -->
+            <div style="display:flex; flex-direction:column; align-items:center; margin-right:10px;">
+                <span style="font-size:10px;">Dist. Tracce</span>
+                <input type="range" id="track-spacing" min="500" max="3000" step="100" value="1500" style="width: 80px;" title="Spaziatura verticale tra le tracce">
+            </div>
+
+            <input type="number" id="grid-sec" value="1" min="0.1" step="0.1" style="width: 45px;"> s/q
+            <strong>Tot:</strong>
+            <input type="number" id="total-duration" value="300" min="10" step="10" style="width: 50px;"> s
+            <label class="snap-label" title="Nascondi tacche piccole senza tempo"><input type="checkbox" id="hide-small-ticks"> 𐄂 Tacche</label>
+        </div>
+    </div>
+
+    <!-- PANNELLO GESTIONE TRACCE -->
+    <div id="tracks-panel" class="controls-panel" style="top: 75px;">
+        <div class="drag-handle" title="Trascina">⋮⋮</div>
+        <strong>Traccia Attiva:</strong>
+        <select id="track-selector" style="width: 150px; font-weight: bold;"></select>
+        <button id="btn-rename-track" class="btn-custom">✏️ Rinomina</button>
+        <button id="btn-add-track" class="btn-custom btn-save">+ Nuova Traccia</button>
+    </div>
+
+    <!-- PANNELLO TESTO -->
+    <div id="text-tools-panel" class="controls-panel" style="top: 130px; display: none;">
+        <div class="drag-handle" title="Trascina">⋮⋮</div>
+        <strong>Testo:</strong>
+        <input type="text" id="text-content" placeholder="Scrivi qui..." style="width: 200px;">
+        <select id="text-font">
+            <option>Sans Serif</option><option>Serif</option><option>Monospace</option>
+        </select>
+        <input type="number" id="text-font-size" value="24" min="8" max="100" style="width: 50px;"> px
+        <button id="btn-open-symbols" class="btn-custom" style="background:#4b5260;">♪ Simboli</button>
+        <button id="btn-close-text-panel" class="close-btn-small" title="Chiudi">✖</button>
+    </div>
+
+    <!-- PANNELLO SEZIONI ASSE Y -->
+    <div id="y-axis-panel" class="controls-panel" style="top: 185px; display: flex; flex-direction: column; align-items: flex-start;">
+        <div class="drag-handle" title="Trascina">⋮⋮</div>
+        <strong>Asse Y (Traccia)</strong>
+        <div class="control-group" style="border:none; padding:0; margin-top:5px;">
+            N° Sezioni: <input type="number" id="y-sections" value="4" min="1" max="20" style="width: 50px;">
+            <button id="edit-y-labels-btn" class="btn-custom">Modifica Etichette</button>
+        </div>
+    </div>
+
+    <!-- PANNELLO LAYER SFONDO -->
+    <div id="background-layers-panel" class="controls-panel" style="top: 255px; flex-direction: column; align-items: flex-start;">
+        <div class="drag-handle">⋮⋮</div>
+        <strong>Layer Sfondo</strong>
+        <div id="background-layers-list" class="layer-list"></div>
+        <button id="add-bkg-layer-btn" class="btn-custom">+ Carica Sfondo</button>
+        <input type="file" id="load-bkg-layer-input" accept=".json" style="display:none;" multiple />
+    </div>
+
+    <!-- BOX INFO & LEGENDE -->
+    <div id="legend-time-box"><span class="icon-square"></span> = <span id="legend-sec-val">1</span> sec</div>
+    <div id="visual-legend-box"><div class="visual-legend-title">Legenda Partitura</div><div id="visual-legend-content"></div></div>
+
+    <!-- MODALI -->
+    <div id="legend-modal"><div class="modal-content"><div class="modal-header"><h3>🏷️ Legenda Globale</h3><button id="close-legend-modal" class="close-btn">&times;</button></div><div class="legend-list" id="legend-list-container"></div><div class="add-legend-form"><select id="new-legend-type"><option value="color">🎨 Colore</option><option value="freehand">✎ Mano Libera</option><option value="line">/ Linea</option><option value="rect">■ Pieno</option><option value="rectOutline">☐ Vuoto</option><option value="circle">◯ Cerchio</option><option value="text">T Testo</option><option value="image">🖼️ Img</option></select><input type="color" id="new-legend-color" value="#e06c75"><input type="text" id="new-legend-text" placeholder="Significato..." style="flex-grow: 1;"><button id="btn-add-legend" class="btn-save">+</button></div></div></div>
+    
+    <div id="symbols-modal"><div class="modal-content" style="width: 700px; max-width: 95vw;"><div class="modal-header"><h3>♪ Catalogo Simboli Musicali</h3><button id="close-symbols-modal" class="close-btn">&times;</button></div><div class="symbols-container"><div class="symbol-category">Dinamiche</div><div class="symbol-grid"><button class="btn-sym" onclick="insertSymbol('ppp')">ppp</button><button class="btn-sym" onclick="insertSymbol('pp')">pp</button><button class="btn-sym" onclick="insertSymbol('p')">p</button><button class="btn-sym" onclick="insertSymbol('mp')">mp</button><button class="btn-sym" onclick="insertSymbol('mf')">mf</button><button class="btn-sym" onclick="insertSymbol('f')">f</button><button class="btn-sym" onclick="insertSymbol('ff')">ff</button><button class="btn-sym" onclick="insertSymbol('fff')">fff</button><button class="btn-sym" onclick="insertSymbol('fp')">fp</button><button class="btn-sym" onclick="insertSymbol('sfz')">sfz</button><button class="btn-sym" onclick="insertSymbol('rfz')">rfz</button><button class="btn-sym" onclick="insertSymbol('fz')">fz</button><button class="btn-sym" onclick="insertSymbol('cresc.')">cresc.</button><button class="btn-sym" onclick="insertSymbol('dim.')">dim.</button></div><div class="symbol-category">Articolazioni</div><div class="symbol-grid"><button class="btn-sym" title="Staccato" onclick="insertSymbol('.')">.</button><button class="btn-sym" title="Staccatissimo" onclick="insertSymbol('\'')">'</button><button class="btn-sym" title="Accento" onclick="insertSymbol('>')">></button><button class="btn-sym" title="Marcato" onclick="insertSymbol('^')">^</button><button class="btn-sym" title="Tenuto" onclick="insertSymbol('_')">_</button><button class="btn-sym" onclick="insertSymbol('𝄐')">𝄐</button><button class="btn-sym" onclick="insertSymbol('𝄑')">𝄑</button><button class="btn-sym" onclick="insertSymbol('𝄒')">𝄒</button><button class="btn-sym" onclick="insertSymbol(',')">,</button></div><div class="symbol-category">Note</div><div class="symbol-grid"><button class="btn-sym" onclick="insertSymbol('𝅝')">𝅝</button><button class="btn-sym" onclick="insertSymbol('𝅗𝅥')">𝅗𝅥</button><button class="btn-sym" onclick="insertSymbol('𝅘𝅥')">𝅘𝅥</button><button class="btn-sym" onclick="insertSymbol('𝅘𝅥𝅮')">𝅘𝅥𝅮</button><button class="btn-sym" onclick="insertSymbol('𝅘𝅥𝅯')">𝅘𝅥𝅯</button><button class="btn-sym" onclick="insertSymbol('𝅘𝅥𝅰')">𝅘𝅥𝅰</button><button class="btn-sym" onclick="insertSymbol('𝅘𝅥𝅱')">𝅘𝅥𝅱</button></div><div class="symbol-category">Pause</div><div class="symbol-grid"><button class="btn-sym" onclick="insertSymbol('𝄻')">𝄻</button><button class="btn-sym" onclick="insertSymbol('𝄼')">𝄼</button><button class="btn-sym" onclick="insertSymbol('𝄽')">𝄽</button><button class="btn-sym" onclick="insertSymbol('𝄾')">𝄾</button><button class="btn-sym" onclick="insertSymbol('𝄿')">𝄿</button><button class="btn-sym" onclick="insertSymbol('𝅀')">𝅀</button></div><div class="symbol-category">Alterazioni</div><div class="symbol-grid"><button class="btn-sym" onclick="insertSymbol('♯')">♯</button><button class="btn-sym" onclick="insertSymbol('♭')">♭</button><button class="btn-sym" onclick="insertSymbol('♮')">♮</button><button class="btn-sym" onclick="insertSymbol('𝄪')">𝄪</button><button class="btn-sym" onclick="insertSymbol('𝄫')">𝄫</button></div><div class="symbol-category">Chiavi e Tempo</div><div class="symbol-grid"><button class="btn-sym" onclick="insertSymbol('𝄞')">𝄞</button><button class="btn-sym" onclick="insertSymbol('𝄢')">𝄢</button><button class="btn-sym" onclick="insertSymbol('𝄡')">𝄡</button><button class="btn-sym" onclick="insertSymbol('𝄀')">𝄀</button><button class="btn-sym" onclick="insertSymbol('𝄴')">𝄴</button><button class="btn-sym" onclick="insertSymbol('𝄵')">𝄵</button></div><div class="symbol-category">Ornamenti e Segni</div><div class="symbol-grid"><button class="btn-sym" onclick="insertSymbol('tr')">tr</button><button class="btn-sym" onclick="insertSymbol('𝆕')">𝆕</button><button class="btn-sym" onclick="insertSymbol('𝆔')">𝆔</button><button class="btn-sym" onclick="insertSymbol('𝆓')">𝆓</button><button class="btn-sym" onclick="insertSymbol('𝄋')">𝄋</button><button class="btn-sym" onclick="insertSymbol('𝄌')">𝄌</button><button class="btn-sym" onclick="insertSymbol('𝄇')">𝄇</button><button class="btn-sym" onclick="insertSymbol('𝄆')">𝄆</button></div></div></div></div>
+
+    <!-- EDITOR ETICHETTE ASSE Y -->
+    <div id="y-labels-modal"><div class="modal-content"><div class="modal-header"><h3>✏️ Modifica Etichette Asse Y</h3><button class="close-btn" id="close-y-labels-modal">&times;</button></div><div id="y-labels-editor"></div><button id="save-y-labels-btn" class="btn-custom btn-save" style="margin-top: 15px;">Salva e Chiudi</button></div></div>
+
+    <!-- WORKSPACE -->
+    <div id="y-axis-container">
+        <canvas id="y-axis-canvas" height="5000" width="60"></canvas>
+    </div>
+    <div id="workspace-wrapper">
+        <div id="workspace">
+            <canvas id="timeline-canvas" height="5000"></canvas>
+            <!-- CONTENITORE PER I LAYER DI SFONDO -->
+            <div id="background-layers"></div>
+            <svg id="draw-svg" xmlns="http://www.w3.org/2000/svg" height="5000"></svg>
+            <div id="patch-gallery"></div>
+        </div>
+    </div>
+    <div id="render-temp"></div>
+
+    <script src="js/globals.js"></script>
+    <script src="js/history.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/svg-engine.js"></script>
+    <script src="js/musicxml.js"></script>
+    <script src="js/project.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
