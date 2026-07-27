@@ -163,3 +163,79 @@ a.btn-help { font-weight: bold; border-radius: 50%; width: 16px; height: 16px; d
     white-space: nowrap;
     margin: 0;
 }
+
+/* PWA UI Styles */
+#btn-install {
+    background-color: #3e5668;
+    color: var(--accent-color);
+    font-weight: bold;
+    border-color: #55778f;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#btn-install:hover {
+    background-color: #55778f;
+}
+
+#btn-install.hidden {
+    display: none !important;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #2c313a;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--green-color);
+    box-shadow: 0 0 8px var(--green-color);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.status-badge.offline .status-dot {
+    background-color: var(--red-color);
+    box-shadow: 0 0 8px var(--red-color);
+}
+
+#toast-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    background: var(--panel-bg);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}

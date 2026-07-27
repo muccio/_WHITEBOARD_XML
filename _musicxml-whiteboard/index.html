@@ -5,9 +5,10 @@
     <title>MusicXML Whiteboard Pro - Multi-Track</title>
     <meta name="theme-color" content="#282c34">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/opensheetmusicdisplay@1.6.1/build/opensheetmusicdisplay.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="vendor/opensheetmusicdisplay.min.js"></script>
+    <script src="vendor/html2canvas.min.js"></script>
+    <script src="vendor/jspdf.umd.min.js"></script>
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
@@ -31,7 +32,10 @@
             <a href="audio-tool.html" target="_blank" title="Apri Audio Visualizer Tool" class="btn-custom" style="background:#4b5260; text-decoration:none;">🔊 Audio</a>
             <input type="file" id="load-project-input" accept=".json" style="display:none;" />
             <button id="export-pdf-btn" class="btn-custom" style="background:#633c41; border-color:#875158; color:#e06c75;">📄 PDF</button>
+            <button id="btn-view-3d" class="btn-custom" style="background:#3c635b; border-color:#51877a; color:#6cefda;" title="Apri Visualizzatore 3D">📦 3D</button>
             <button id="btn-legend-edit" class="btn-custom btn-legend">🏷️ Legenda Globale</button>
+            <button id="btn-install" class="btn-custom hidden">📲 Installa App</button>
+            <div id="connection-status" class="status-badge online" title="Online"><span class="status-dot"></span></div>
         </div>
         <div class="control-group">
             <strong>Strum:</strong>
@@ -154,5 +158,9 @@
     <script src="js/musicxml.js"></script>
     <script src="js/project.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/pwa.js"></script>
+
+    <!-- TOAST CONTAINER PWA -->
+    <div id="toast-container"></div>
 </body>
 </html>

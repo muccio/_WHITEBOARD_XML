@@ -16,6 +16,17 @@ window.addEventListener('load', () => {
     
     const exportPdfBtn = document.getElementById('export-pdf-btn');
     if (exportPdfBtn && typeof exportToPDF === 'function') exportPdfBtn.addEventListener('click', exportToPDF);
+
+    const btnView3D = document.getElementById('btn-view-3d');
+    if (btnView3D) {
+        btnView3D.addEventListener('click', () => {
+            const w = 1200;
+            const h = 800;
+            const left = (window.screen.width - w) / 2;
+            const top = (window.screen.height - h) / 2;
+            window.open('view3d.html', 'musicxml_whiteboard_3d', `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`);
+        });
+    }
     
     const saveProjectBtn = document.getElementById('save-project-btn');
     if (saveProjectBtn && typeof saveProject === 'function') saveProjectBtn.addEventListener('click', saveProject);

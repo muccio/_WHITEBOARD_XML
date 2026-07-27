@@ -1,71 +1,32 @@
 # Coding Conventions
 
-**Analysis Date:** 2026-06-10
+This document details the naming conventions, code style, error handling, and formatting rules used across the project.
 
 ## Naming Patterns
-
-**Files:**
-- kebab-case for script extensions and assets (e.g., `svg-engine.js`, `audio-tool.html`).
-
-**Functions:**
-- camelCase for all function names (e.g., `addTrack`, `saveHistoryState`, `makeDraggable`).
-- Event handlers: `onEventName` pattern (e.g. `onPointerMove`, `onPointerUp`).
-
-**Variables:**
-- camelCase for local and global variables (e.g. `drawSvg`, `activeTrackId`, `selectedElement`).
-- UPPER_SNAKE_CASE for structural constants (e.g., `GRID_SIZE`, `MAX_HISTORY`, `WORKSPACE_CENTER_Y`).
-
-**DOM Selectors:**
-- ID naming follows kebab-case (e.g. `proj-title`, `btn-undo`, `workspace-wrapper`).
-- Class naming uses kebab-case (e.g. `controls-panel`, `measure-box`, `bezier-control-point`).
+- **Script Extensions & Assets**: `kebab-case` (`svg-engine.js`, `audio-tool.html`, `style.css`).
+- **Function Names**: `camelCase` (`addTrack()`, `saveHistoryState()`, `makeDraggable()`).
+- **Event Handlers**: The `onEventName` pattern is heavily favored (`onPointerMove()`, `onPointerUp()`, `onWheel()`).
+- **Local & Global Variables**: `camelCase` (`drawSvg`, `activeTrackId`, `selectedElement`).
+- **Structural Constants**: `UPPER_SNAKE_CASE` is utilized for key visual boundaries or system limits (`GRID_SIZE`, `MAX_HISTORY`, `WORKSPACE_CENTER_Y`).
+- **HTML IDs**: `kebab-case` (`proj-title`, `btn-undo`, `workspace-wrapper`).
+- **HTML Classes**: `kebab-case` (`controls-panel`, `measure-box`, `bezier-control-point`).
 
 ## Code Style
-
-**Formatting:**
-- **Indentation:** 4-space indentation for logic.
-- **Semicolons:** Required for statement termination.
-- **Quotes:** Double quotes preferred for strings in HTML markup, single/double quotes allowed in JS code.
-- **Line Length:** Kept under 120 characters where possible, inline callbacks compressed.
-
-**Linting:**
-- No automated linting tool configured. Developers must maintain alignment by inspecting surrounding script blocks.
-
-## Import & Load Organization
-
-**Order of Loading (in `index.html`):**
-Scripts are loaded in sequence at the footer of the body. Since the code relies on global namespaces, the loading order is strict:
-1. `js/globals.js` - Mounts global state.
-2. `js/history.js` - Undo/Redo stack handlers.
-3. `js/ui.js` - Workspace canvas scaling and track UI layouts.
-4. `js/svg-engine.js` - Vector drawing capabilities.
-5. `js/musicxml.js` - OSMD parsers and score layout.
-6. `js/project.js` - Serialization templates and PDF compilation.
-7. `js/main.js` - Entry point bootstrapping event listeners.
+- **Indentation**: 4-space indentation for logic blocks.
+- **Semicolons**: Required at the end of every statement.
+- **Quotes**: Double quotes (`"`) are strictly preferred for string attributes in HTML markup. In JavaScript, both single (`'`) and double quotes (`"`) are allowed interchangeably.
+- **Line Length**: Lines are generally kept under 120 characters where possible. Inline callbacks can be compressed.
+- **Early Return**: Functions heavily employ early exit guard clauses (e.g., `if (!selectedElement) return;`) to keep nesting shallow and improve readability.
+- **Scope Isolation**: Rather than addressing the `window` scope dynamically, functions should reference the explicitly initialized global context variables declared in `js/globals.js`.
 
 ## Error Handling
-
-**Patterns:**
-- **Local try/catch blocks:** Mandatory around file parsing (`JSON.parse` and `osmd.load`) and image/PDF capture cycles.
-- **Graceful degradation:** Alert popups warn users about file corruption or permission blocks, preserving the current canvas drawing state.
+- **Local Try/Catch Blocks**: Wrap error-prone segments, particularly file parsing (`JSON.parse` for project files and `osmd.load` for MusicXML) and image/PDF capture cycles inside `try...catch`.
+- **Graceful Degradation**: Utilizing native browser `alert()` popups to warn users about file corruption, unrecognized formats, or permission blocks. State mutating functions must ensure the current canvas drawing state is preserved if an exception is thrown midway.
 
 ## Logging
-
-- **Console Outputs:** `console.log`, `console.warn`, and `console.error` are utilized to document asset loaders, missing layers, or viewport offsets during runtime debugging.
-- No remote telemetry framework is attached.
+- **Console Outputs**: Standard native loggers (`console.log`, `console.warn`, `console.error`) are left in the code to document asset loaders, missing layers, or viewport calculation offsets for runtime debugging. No remote telemetry is active.
 
 ## Comments
-
-**Guidelines:**
-- Use header blocks to demarcate files (`/* js/globals.js */`).
-- Keep code clean: write simple comments describing math conversions, coordinate scales, and pointer capture boundaries.
-- Keep comments in Italian or English depending on context; the existing codebase has comments mostly in Italian (e.g. `// GESTIONE TRACCE`, `// SISTEMA MULTI-TRACCIA & LAYERS`). Match this language style when modifying surrounding components.
-
-## Function Design
-
-- **Early Return:** Functions employ early exit guard clauses (`if (!btn) return;`) to reduce nested block depth.
-- **Scope Isolation:** Avoid accessing window scopes dynamically; instead, reference the initialized global context variables declared in `js/globals.js`.
-
----
-
-*Convention analysis: 2026-06-10*
-*Update when patterns change*
+- **Headers**: Use standard header blocks to demarcate files (`/* js/globals.js */`).
+- **Explanations**: Write clean, concise comments to document heavy math conversions, coordinate boundary checking, and scaling calculations.
+- **Language**: Comments can be a mix of English and Italian. The existing codebase relies heavily on Italian comments (e.g., `// GESTIONE TRACCE`, `// SISTEMA MULTI-TRACCIA & LAYERS`). Match the language style of the surrounding component when authoring new code.

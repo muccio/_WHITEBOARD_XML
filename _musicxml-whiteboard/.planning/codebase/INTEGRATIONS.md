@@ -1,80 +1,28 @@
 # External Integrations
 
-**Analysis Date:** 2026-06-10
+This document describes the external APIs, integrations, and services utilized by the MusicXML Whiteboard Pro 3D project.
 
-## APIs & External Services
+## Network Dependencies & APIs
+The application is designed to be completely client-side and offline-capable, with the exception of loading external libraries from Content Delivery Networks (CDNs). There are no external REST APIs, WebSockets, or backend databases used.
 
-**Payment Processing:**
-- None.
+## Content Delivery Networks (CDNs)
+The project dynamically loads specific versions of essential dependencies via CDN links embedded in the HTML `script` tags:
 
-**Email/SMS:**
-- None.
+1. **jsDelivr (OpenSheetMusicDisplay)**
+   - **URL**: `https://cdn.jsdelivr.net/npm/opensheetmusicdisplay@1.6.1/build/opensheetmusicdisplay.min.js`
+   - **Purpose**: Used for rendering complex MusicXML notation directly onto the DOM in `js/musicxml.js`.
 
-**External APIs:**
-- None.
+2. **Cloudflare CDNJS (html2canvas)**
+   - **URL**: `https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js`
+   - **Purpose**: Assists `js/project.js` in taking rasterized snapshots of HTML elements (like `#patch-gallery`) to compose PDF exports.
 
-## Data Storage
+3. **Cloudflare CDNJS (jsPDF)**
+   - **URL**: `https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js`
+   - **Purpose**: Used for generating downloadable PDF files natively in the browser inside `js/project.js`.
 
-**Databases:**
-- None.
-
-**File Storage:**
-- Local File System (Browser-driven upload/download):
-  - **MusicXML Import:** Loaded locally using `FileReader` in `js/musicxml.js`. Supported formats: `.xml`, `.musicxml`, `.mxl`.
-  - **Project JSON Save/Load:** Tracks, SVG drawing content, and HTML measure boxes are serialized to JSON and downloaded as files, or loaded back via `FileReader` in `js/project.js`.
-  - **Background Layer JSON:** Multi-layered project sketches loaded dynamically via `FileReader` in `js/ui.js` and combined visually.
-  - **Audio Import:** Wave/spectrogram files (`.wav`, `.mp3`, `.m4a`, `.ogg`) loaded via `FileReader` in `audio-tool.html`.
-
-**Caching:**
-- In-memory state only. The application relies on memory variables and the browser Session history (Undo/Redo stack) for transient persistence.
-
-## Authentication & Identity
-
-**Auth Provider:**
-- None.
-
-**OAuth Integrations:**
-- None.
-
-## Monitoring & Observability
-
-**Error Tracking:**
-- None.
-
-**Analytics:**
-- None.
-
-**Logs:**
-- Browser standard Console logs (stdout/stderr mapped to Developer tools).
-
-## CI/CD & Deployment
-
-**Hosting:**
-- Static host environment. No backend deployment is required.
-
-**CI Pipeline:**
-- None.
-
-## Environment Configuration
-
-**Development:**
-- No environment variables or local credentials needed. Examples and assets are kept in the `esempi/` directory.
-
-**Staging:**
-- None.
-
-**Production:**
-- None.
-
-## Webhooks & Callbacks
-
-**Incoming:**
-- None.
-
-**Outgoing:**
-- None.
-
----
-
-*Integration audit: 2026-06-10*
-*Update when adding/removing external services*
+## Native Browser Web APIs
+Instead of external service integrations, the app integrates heavily with native Web APIs provided by modern browsers:
+- **Web Audio API**: In `audio-tool.html`, utilized for processing local audio files, executing Cooley-Tukey Radix-2 FFT calculation, and graphing audio features.
+- **SVG DOM API**: Used extensively by `js/svg-engine.js` for dynamic vector graphics creation (lines, Bezier curves, text, circles) and mirroring.
+- **Canvas API**: Used in `js/ui.js` for timeline generation and in `view3d.html` for rendering static 3D textures.
+- **File API & FileReader**: Used in `js/project.js` and `js/musicxml.js` to process local JSON project files, XML sheet files, and local audio tracks without requiring an upload server.

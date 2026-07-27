@@ -20,7 +20,57 @@
             margin: 0; padding: 20px;
         }
 
-        .header { text-align: center; margin-bottom: 20px; }
+        .header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .btn-close-header {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #e06c75;
+            color: #ffffff;
+            border: 1px solid #e06c75;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-close-header:hover {
+            background-color: #d15b64;
+            border-color: #d15b64;
+            transform: translateY(-50%) scale(1.03);
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn-close-header {
+                position: static;
+                transform: none;
+            }
+            .btn-close-header:hover {
+                transform: scale(1.03);
+            }
+        }
         
         .toolbar {
             background: var(--panel-bg);
@@ -78,8 +128,13 @@
 <body>
 
     <div class="header">
-        <h1 style="margin:0; color:#61afef;">Audio Visualizer Utility</h1>
-        <p style="margin:5px 0 0 0;">Generatore di Waveform e Sonogramma esportabili con trasparenza.</p>
+        <div class="header-content">
+            <h1 style="margin:0; color:#61afef;">Audio Visualizer Utility</h1>
+            <p style="margin:5px 0 0 0;">Generatore di Waveform e Sonogramma esportabili con trasparenza.</p>
+        </div>
+        <button id="btn-close" class="btn-close-header" onclick="closeWindow()" title="Chiudi finestra e torna all'editor principale">
+            ✕ Chiudi
+        </button>
     </div>
 
     <div class="toolbar">
@@ -364,6 +419,26 @@
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
+        }
+
+        // ==========================================
+        // CHIUSURA FINESTRA STANDALONE / APP
+        // ==========================================
+        function closeWindow() {
+            try {
+                window.close();
+            } catch (e) {
+                console.warn("Chiusura finestra fallita via script:", e);
+            }
+            setTimeout(() => {
+                if (!window.closed) {
+                    if (window.history.length > 1 && document.referrer) {
+                        window.history.back();
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                }
+            }, 150);
         }
 
     </script>
