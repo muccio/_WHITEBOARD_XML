@@ -1,0 +1,57 @@
+name: MusicXMLWhiteboard
+
+options:
+  bundleIdPrefix: com.musicxmlwhiteboard
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    ENABLE_HARDENED_RUNTIME: NO
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+
+targets:
+  MusicXMLWhiteboard:
+    type: application
+    platform: macOS
+    sources:
+      - path: MusicXMLWhiteboard
+        excludes:
+          - Info.plist
+          - Resources/web
+      - path: MusicXMLWhiteboard/Resources/web
+        type: folder
+        buildPhase: resources
+    info:
+      path: MusicXMLWhiteboard/Info.plist
+      properties:
+        CFBundleName: "MusicXML Whiteboard"
+        CFBundleDisplayName: "MusicXML Whiteboard"
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundlePackageType: APPL
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
+        LSApplicationCategoryType: public.app-category.music
+        NSHighResolutionCapable: true
+        NSHumanReadableCopyright: "© 2026 MusicXML Whiteboard Pro"
+        NSSupportsAutomaticTermination: false
+        NSSupportsSuddenTermination: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.musicxmlwhiteboard.app
+        PRODUCT_NAME: "MusicXML Whiteboard"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ARCHS: "$(ARCHS_STANDARD)"
+        ONLY_ACTIVE_ARCH: NO
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        DEVELOPMENT_TEAM: ""
+        ENABLE_APP_SANDBOX: NO
+        COMBINE_HIDPI_IMAGES: YES
+    scheme:
+      testTargets: []
